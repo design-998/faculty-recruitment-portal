@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}About — FacultyPath{% endblock %}
+{% block content %}
+<section class="page-hero">
+    <div class="content-width page-hero-inner">
+        <div><p class="eyebrow">About FacultyPath</p><h1>Less searching.<br>More meaningful work.</h1><p>A focused starting point for faculty recruitment across India's IITs and NITs.</p></div>
+        <div class="page-hero-stat"><strong>{{ total_institutes }}</strong><span>current listings</span></div>
+    </div>
+</section>
+<section class="content-width page-section about-layout">
+    <article class="about-card about-primary"><p class="eyebrow">Our purpose</p><h2>Make academic opportunities easier to discover.</h2><p>FacultyPath brings publicly available recruitment listings together so candidates can scan opportunities, explore institutes, and visit official application pages without searching each site individually.</p><p>This portal is an independent discovery tool and is not affiliated with any institute or government recruitment authority.</p></article>
+    <article class="about-card"><span class="about-number">01</span><h3>Listings are collected</h3><p>Institute-specific scrapers check public recruitment pages and update available position details.</p></article>
+    <article class="about-card"><span class="about-number">02</span><h3>Refresh runs daily</h3><p>When the scheduler is running, it attempts a refresh at 2:00 AM local machine time. The page shows the last successful refresh.</p></article>
+    <article class="about-card"><span class="about-number">03</span><h3>Official sources come first</h3><p>Use the source and application links to confirm current eligibility, deadlines, and instructions before applying.</p></article>
+    <div class="about-caution"><span class="note-icon">!</span><p><strong>Please verify before applying.</strong> Institute pages can change, and automated extraction may not capture every update. The official advertisement is authoritative.</p></div>
+</section>
+{% endblock %}

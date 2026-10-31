@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Institute directory — FacultyPath{% endblock %}
+{% block content %}
+<section class="page-hero">
+    <div class="content-width page-hero-inner">
+        <div><p class="eyebrow">Explore the network</p><h1>Institute directory</h1><p>Discover recruitment listings from India's IITs and NITs, all linked to their official sources.</p></div>
+        <div class="page-hero-stat"><strong>{{ institutes|length }}</strong><span>institutes tracked</span></div>
+    </div>
+</section>
+<section class="content-width page-section">
+    <div class="directory-totals"><span><b>{{ iit_count }}</b> Indian Institutes of Technology</span><span><b>{{ nit_count }}</b> National Institutes of Technology</span></div>
+    {% for category, label in [('IIT', 'Indian Institutes of Technology'), ('NIT', 'National Institutes of Technology')] %}
+    <section class="directory-section">
+        <div class="results-heading"><div><p class="eyebrow">{{ category }} network</p><h2>{{ label }}</h2></div><span class="subtle-text">{{ institutes|selectattr('category', 'equalto', category)|list|length }} institutes</span></div>
+        <div class="institute-grid">
+            {% for institute in institutes if institute.category == category %}
+            <a class="institute-card" href="{{ url_for('institute_detail', institute_slug=institute.slug) }}">
+                <span class="institute-monogram">{{ institute.name.split(' ')[0] }}</span>
+                <span class="institute-card-copy"><strong>{{ institute.name }}</strong><small>{{ institute.jobs|length }} {{ 'listing' if institute.jobs|length == 1 else 'listings' }}</small></span>
+                <span class="institute-card-end"><span class="open-mini">{{ institute.open_count }} open</span><span aria-hidden="true">↗</span></span>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endfor %}
+</section>
+{% endblock %}

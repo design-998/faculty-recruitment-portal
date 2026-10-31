@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Faculty opportunities from Indian Institutes of Technology and National Institutes of Technology.">
+    <title>{% block title %}FacultyPath — Faculty opportunities{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="{{ url_for('home') }}" aria-label="FacultyPath home">
+                <span class="brand-mark" aria-hidden="true">F</span>
+                <span>faculty<span class="brand-light">path</span></span>
+            </a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a class="{{ 'active' if request.endpoint == 'home' else '' }}" href="{{ url_for('home') }}">Overview</a>
+                <a class="{{ 'active' if request.endpoint == 'opportunities' else '' }}" href="{{ url_for('opportunities') }}">Opportunities</a>
+                <a class="{{ 'active' if request.endpoint in ['institutes', 'institute_detail'] else '' }}" href="{{ url_for('institutes') }}">Institutes</a>
+                <a class="{{ 'active' if request.endpoint == 'about' else '' }}" href="{{ url_for('about') }}">About</a>
+            </nav>
+            <a class="nav-cta" href="{{ url_for('opportunities', status='open') }}">Explore openings <span aria-hidden="true">↗</span></a>
+            <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <a class="brand footer-brand" href="{{ url_for('home') }}">
+                <span class="brand-mark" aria-hidden="true">F</span>
+                <span>faculty<span class="brand-light">path</span></span>
+            </a>
+            <p>Independent discovery for academic careers. Always verify details with the official institute.</p>
+            <a href="{{ url_for('about') }}">About this portal</a>
+        </div>
+    </footer>
+    <script>
+        const menuToggle = document.querySelector(".menu-toggle");
+        const mainNav = document.querySelector(".main-nav");
+        menuToggle.addEventListener("click", () => {
+            const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+            menuToggle.setAttribute("aria-expanded", String(!expanded));
+            mainNav.classList.toggle("nav-open", !expanded);
+        });
+    </script>
+</body>
+</html>
