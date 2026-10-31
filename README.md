@@ -2,6 +2,10 @@
 
 A Flask dashboard for faculty recruitment listings at Indian IITs and NITs. It serves the checked-in `data.json` snapshot and includes institute-specific scrapers for refreshing available details.
 
+**Live website:** <https://faculty-recruitment-portal.onrender.com>
+
+The free hosting instance may take about a minute to wake after inactivity. If the first page load is delayed, wait a little and refresh.
+
 ## Requirements
 
 - Python 3.10 or later
